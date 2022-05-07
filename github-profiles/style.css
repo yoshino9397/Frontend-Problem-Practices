@@ -5,8 +5,8 @@
 }
 
 body {
-    background-color: #2a2a72;
-    background-image: linear-gradient(315deg, #2a2a72 0%, #2e2a68 74%);
+    background-color: #6799a8;
+    background-image: linear-gradient(315deg, #2e4659 0%, #5e93a7 74%);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -17,7 +17,7 @@ body {
 }
 
 input {
-    background-color: #4c2885;
+    background-color: #a66aac;
     border-radius: 10px;
     border: none;
     box-shadow: 0 5px 10px rgba(154, 160, 185, 0.05),
@@ -30,7 +30,7 @@ input {
 }
 
 input::placeholder {
-    color: #bbb;
+    color: rgb(223, 223, 223);
 }
 
 input:focus {
@@ -38,8 +38,8 @@ input:focus {
 }
 
 .card {
-    background-color: #4c2885;
-    background-image: linear-gradient(315deg, #4c2885 0%, #4c11ac 100%);
+    background-color: #323b7a;
+    background-image: linear-gradient(315deg, #8268ac 0%, #483960 100%);
     border-radius: 20px;
     box-shadow: 0 5px 10px rgba(154, 160, 185, 0.05),
         0 15px 40px rgba(0, 0, 0, 0.1);
@@ -49,7 +49,7 @@ input:focus {
 }
 
 .avatar {
-    border: 10px solid #2a2a72;
+    border: 10px solid #663e6d;
     border-radius: 50%;
     height: 150px;
     width: 150px;
@@ -83,7 +83,7 @@ input:focus {
 }
 
 .repo {
-    background-color: #2a2a72;
+    background-color: #454568;
     border-radius: 5px;
     display: inline-block;
     color: white;
