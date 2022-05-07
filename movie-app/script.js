@@ -54,7 +54,7 @@ function showMovies(movies) {
 function getClassByRate(vote) {
     if (vote >= 8) {
         return "green";
-    } else if (vote >= 5) {
+    } else if (vote >= 6) {
         return "orange";
     } else {
         return "red";
