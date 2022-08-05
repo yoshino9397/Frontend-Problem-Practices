@@ -1,0 +1,52 @@
+body {
+  margin: 0;
+  font-family: system-ui, sans-serif;
+  background-color: #c5c1b6;
+}
+nav {
+  display: flex;
+  gap: 1em;
+  background-color: rgb(116, 160, 116);
+}
+nav img {
+  margin-left: 20px;
+}
+nav h1 {
+  color: white;
+  font-weight: 200;
+  font-size: 1.7rem;
+}
+article{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.card {
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+  background-color: #fff;
+  width: 28%;
+  padding: 20px;
+}
+.card img {
+  width: 15%;
+  height: 15%;
+  margin-right: 20px;
+}
+.card-right .top {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+}
+
+p {
+  margin-top: -5px;
+}
+
+small {
+  color: gray;
+  font-size: 15px;
+}
