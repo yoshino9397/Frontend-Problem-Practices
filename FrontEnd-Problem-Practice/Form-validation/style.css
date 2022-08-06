@@ -1,0 +1,40 @@
+* {
+  margin: 0;
+}
+.wrap {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+.container {
+  width: 25%;
+  margin-top: 60px;
+  border: 2px solid #ccc;
+  border-radius: 3px;
+  box-shadow: 5px 5px 5px 5px gray;
+  padding: 20px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+input {
+  width: 70%;
+  margin-bottom: 10px;
+}
+button {
+  margin-bottom: 10px;
+  padding: 10px 20px;
+  border: none;
+  background-color: rgb(137, 183, 225);
+  color: white;
+}
+button:disabled {
+  opacity: 0.5;
+}
+
+.errors {
+  color: red;
+}
