@@ -1,0 +1,61 @@
+.my-checkbox {
+  display: flex;
+}
+input[type="checkbox"] {
+  background-color: gray;
+  align-self: center;
+  appearance: none;
+  width: 10px;
+  height: 10px;
+  border: none;
+  border-radius: 50%;
+}
+input[type="checkbox"]:checked {
+  background-color: green;
+}
+/* //////////////////////////////////////////////////////////////// */
+.row {
+  height: 50px;
+  width: 100%;
+  border-bottom: 1px solid #ccc;
+  background-color: #eee;
+}
+.row:nth-child(even) {
+  background-color: #ddd;
+}
+.row:first-child {
+  border-top: 1px solid #ccc;
+}
+/* //////////////////////////////////////////////////////////////// */
+.three-column-text {
+  columns: 3 auto;
+  column-rule: 1px solid #ddd;
+  column-gap: 20px;
+  padding: 10px;
+}
+/* //////////////////////////////////////////////////////////////// */
+/* .golden-ratio {
+  background-color: #ccc;
+  aspect-ratio: 1.618;
+} */
+/* //////////////////////////////////////////////////////////////// */
+.fit-image.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+/* //////////////////////////////////////////////////////////////// */
+.list-numbering ol {
+  counter-reset: li;
+  list-style: none;
+}
+.list-numbering li::before {
+  counter-increment: li;
+  content: counters(li, ".") " ";
+  color: #f44336;
+}
+/* //////////////////////////////////////////////////////////////// */
+.hairline {
+  width: 150px;
+  
+}
