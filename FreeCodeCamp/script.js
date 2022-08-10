@@ -319,4 +319,26 @@ function add(x) {
     };
   };
 }
-console.log(add(10)(20)(30));
+
+///Sum All Numbers in a Range
+function sumAll(arr) {
+  arr.sort((a, b) => a - b);
+  let sum = 0;
+  for (let i = arr[0]; i < arr[1] + 1; i++) {
+    sum += i;
+  }
+  return sum;
+}
+console.log(sumAll([1, 4]));
+
+///Diff Two Arrays
+function diffArray(arr1, arr2) {
+  const newArr = [];
+  for (let i = 0; i < arr1.length; i++) {
+    if (arr1.includes(arr2[i]) === false) {
+      newArr.push(arr2[i]);
+    }
+  }
+  return newArr;
+}
+console.log(diffArray([1, 2, 3, 5], [1, 2, 3, 4, 5]));
