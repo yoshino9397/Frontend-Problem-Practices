@@ -32,7 +32,7 @@ function remove(bookName) {
 }
 
 ///Use the map Method to Extract Data from an Array
-const watchList1 = [
+const watchList = [
   {
     Title: "Inception",
     Year: "2010",
@@ -66,7 +66,7 @@ const watchList1 = [
 ];
 
 const ratings = [];
-watchList1.map((watch) => {
+watchList.map((watch) => {
   ratings.push({
     title: watch["Title"],
     rating: watch["imdbRating"],
@@ -87,7 +87,57 @@ const new_s = s.myMap(function (item) {
 });
 
 ///Use the filter Method to Extract Data from an Array
-const watchList2 = [
+const filteredList = watchList
+  .filter((movie) => {
+    return parseFloat(movie.imdbRating) >= 8.0;
+  })
+  .map((movie) => {
+    return { title: movie["Title"], rating: movie["imdbRating"] };
+  });
+
+/// Implement the filter Method on a Prototype
+const s1 = [23, 65, 98, 5];
+Array.prototype.myFilter = function (callback) {
+  let newArray = [];
+  this.forEach(function (x) {
+    if (callback(x) == true) {
+      newArray.push(x);
+    }
+  });
+  return newArray;
+};
+const new_s1 = s1.myFilter(function (item) {
+  return item % 2 === 1;
+});
+
+///Return Part of an Array Using the slice Method
+function sliceArray(anim, beginSlice, endSlice) {
+  return anim.slice(beginSlice, endSlice);
+}
+const inputAnim = ["Cat", "Dog", "Tiger", "Zebra", "Ant"];
+
+///Remove Elements from an Array Using slice Instead of splice
+function nonMutatingSplice(cities) {
+  return cities.slice(0, 3);
+}
+const inputCities = ["Chicago", "Delhi", "Islamabad", "London", "Berlin"];
+
+////Combine Two Arrays Using the concat Method
+function nonMutatingConcat(original, attach) {
+  return original.concat(attach);
+}
+const first1 = [1, 2, 3];
+const second1 = [4, 5];
+
+///Add Elements to the End of an Array Using concat Instead of push
+function nonMutatingPush(original, newItem) {
+  return original.concat(newItem);
+}
+const first = [1, 2, 3];
+const second = [4, 5];
+
+///Use the reduce Method to Analyze Data
+const watchList1 = [
   {
     Title: "Inception",
     Year: "2010",
@@ -97,7 +147,7 @@ const watchList2 = [
     Genre: "Action, Adventure, Crime",
     Director: "Christopher Nolan",
     Writer: "Christopher Nolan",
-    Actors: "Leonardo DiCaprio, Joseph Gordon-Levitt, Elliot Page, Tom Hardy",
+    Actors: "Leonardo DiCaprio, Joseph Gordon-Levitt, Ellen Page, Tom Hardy",
     Plot: "A thief, who steals corporate secrets through use of dream-sharing technology, is given the inverse task of planting an idea into the mind of a CEO.",
     Language: "English, Japanese, French",
     Country: "USA, UK",
@@ -206,26 +256,67 @@ const watchList2 = [
     Response: "True",
   },
 ];
+function getRating(watchList) {
+  const averageRating =
+    watchList
+      .filter((film) => film.Director === "Christopher Nolan")
+      .map((film) => Number(film.imdbRating))
+      .reduce((sumOfRatings, rating) => sumOfRatings + rating) /
+    watchList.filter((film) => film.Director === "Christopher Nolan").length;
+  return averageRating;
+}
 
-const filteredList = watchList2
-  .filter((movie) => {
-    return parseFloat(movie.imdbRating) >= 8.0;
-  })
-  .map((movie) => {
-    return { title: movie["Title"], rating: movie["imdbRating"] };
-  });
-
-/// Implement the filter Method on a Prototype
-const s1 = [23, 65, 98, 5];
-Array.prototype.myFilter = function (callback) {
-  let newArray = [];
-  this.forEach(function (x) {
-    if (callback(x) == true) {
-      newArray.push(x);
-    }
-  });
-  return newArray;
+///Use Higher-Order Functions map, filter, or reduce to Solve a Complex Problem
+const squareList = (arr) => {
+  return arr
+    .filter((num) => num > 0 && num % parseInt(num) === 0)
+    .map((num) => Math.pow(num, 2));
 };
-const new_s1 = s1.myFilter(function (item) {
-  return item % 2 === 1;
-});
+const squaredIntegers = squareList([-3, 4.8, 5, 3, -3.2]);
+
+///Sort an Array Alphabetically using the sort Method
+function alphabeticalOrder(arr) {
+  return arr.sort();
+}
+
+///Return a Sorted Array Without Changing the Original Array
+const globalArray = [5, 6, 3, 2, 9];
+function nonMutatingSort(arr) {
+  const newArray = arr.sort((a, b) => a - b);
+  return newArray;
+}
+
+///Split a String into an Array Using the split Method
+function splitify(str) {
+  return str.split(/\W/);
+}
+
+///Combine an Array into a String Using the join Method
+function sentensify(str) {
+  return str.split(/\W/).join(" ");
+}
+
+////Apply Functional Programming to Convert Strings to URL Slugs
+function urlSlug(title) {
+  return title.toLowerCase().trim().split(/\s+/).join("-");
+}
+
+///Use the every Method to Check that Every Element in an Array Meets a Criteria
+function checkPositive(arr) {
+  return arr.every((val) => val > 0);
+}
+
+///Use the some Method to Check that Any Elements in an Array Meet a Criteria
+function checkPositive(arr) {
+  return arr.some((num) => num > 0);
+}
+
+///Introduction to Currying and Partial Application
+function add(x) {
+  return function (y) {
+    return function (z) {
+      return x + y + z;
+    };
+  };
+}
+console.log(add(10)(20)(30));
