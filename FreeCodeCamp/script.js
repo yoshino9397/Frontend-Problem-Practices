@@ -493,12 +493,29 @@ function steamrollArray(arr) {
 function binaryAgent(str) {
   var biString = str.split(" ");
   var uniString = [];
-  for (var i = 0; i < biString.length; i++) {
+  for (let i = 0; i < biString.length; i++) {
     uniString.push(String.fromCharCode(parseInt(biString[i], 2)));
   }
   return uniString.join("");
 }
 
-binaryAgent(
-  "01000001 01110010 01100101 01101110 00100111 01110100 00100000 01100010 01101111 01101110 01100110 01101001 01110010 01100101 01110011 00100000 01100110 01110101 01101110 00100001 00111111"
-);
+///Everything Be True
+function truthCheck(collection, pre) {
+  let counter = 0;
+  for (let c in collection) {
+    if (collection[c].hasOwnProperty(pre) && Boolean(collection[c][pre])) {
+      counter++;
+    }
+  }
+  return counter == collection.length;
+}
+
+///Arguments Optional
+function addTogether() {
+  const [first, second] = arguments;
+  if (typeof first !== "number") return undefined;
+  if (arguments.length === 1) return (second) => addTogether(first, second);
+  if (typeof second !== "number") return undefined;
+  return first + second;
+}
+console.log(addTogether(2, 3));
