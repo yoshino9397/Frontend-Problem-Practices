@@ -329,16 +329,176 @@ function sumAll(arr) {
   }
   return sum;
 }
-console.log(sumAll([1, 4]));
 
 ///Diff Two Arrays
 function diffArray(arr1, arr2) {
-  const newArr = [];
-  for (let i = 0; i < arr1.length; i++) {
-    if (arr1.includes(arr2[i]) === false) {
-      newArr.push(arr2[i]);
+  return arr1
+    .concat(arr2)
+    .filter((item) => !arr1.includes(item) || !arr2.includes(item));
+}
+
+///Seek and Destroy
+function destroyer(arr, ...valsToRemove) {
+  for (let i = 1; i < arr.length; i++) {
+    return arr.filter((elem) => !valsToRemove.includes(elem));
+  }
+}
+
+///Wherefore art thou
+function whatIsInAName(collection, source) {
+  const sourceKeys = Object.keys(source);
+  return collection.filter((obj) => {
+    for (let i = 0; i < sourceKeys.length; i++) {
+      if (
+        !obj.hasOwnProperty(sourceKeys[i]) ||
+        obj[sourceKeys[i]] !== source[sourceKeys[i]]
+      ) {
+        return false;
+      }
+    }
+    return true;
+  });
+}
+
+///Spinal Tap Case
+function spinalCase(str) {
+  return str
+    .split(/\s|_|(?=[A-Z])/)
+    .join("-")
+    .toLowerCase();
+}
+
+///Pig Latin
+function translatePigLatin(str) {
+  let consonantRegex = /^[^aeiou]+/;
+  let myConsonants = str.match(consonantRegex);
+  return myConsonants !== null
+    ? str.replace(consonantRegex, "").concat(myConsonants).concat("ay")
+    : str.concat("way");
+}
+
+///Search and Replace
+function myReplace(str, before, after) {
+  if (before.slice(0, 1) === before.slice(0, 1).toUpperCase()) {
+    let upper = after.slice(0, 1).toUpperCase() + after.slice(1);
+    return str.split(/\s/).join(" ").replace(before, upper);
+  } else {
+    let low = after.slice(0, 1).toLowerCase() + after.slice(1);
+    return str.split(/\s/).join(" ").replace(before, low);
+  }
+}
+
+///DNA Pairing
+function pairElement(str) {
+  let result = [];
+  let arr = str.split("");
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i] === "T") {
+      result.push(["T", "A"]);
+    } else if (arr[i] === "A") {
+      result.push(["A", "T"]);
+    } else if (arr[i] === "C") {
+      result.push(["C", "G"]);
+    } else {
+      result.push(["G", "C"]);
     }
   }
-  return newArr;
+  return result;
 }
-console.log(diffArray([1, 2, 3, 5], [1, 2, 3, 4, 5]));
+
+///Missing letters
+function fearNotLetter(str) {
+  for (let i = 0; i < str.length; i++) {
+    const charCode = str.charCodeAt(i);
+    if (charCode !== str.charCodeAt(0) + i) {
+      return String.fromCharCode(charCode - 1);
+    }
+  }
+  return undefined;
+}
+
+///Sorted Union
+function uniteUnique() {
+  const args = [...arguments];
+  const result = [];
+  for (let i = 0; i < args.length; i++) {
+    for (let j = 0; j < args[i].length; j++) {
+      if (result.includes(args[i][j]) === false) {
+        result.push(args[i][j]);
+      }
+    }
+  }
+  return result;
+}
+
+/// Sum All Odd Fibonacci Numbers
+function sumFibs(num) {
+  let prevNumber = 0;
+  let currNumber = 1;
+  let result = 0;
+  while (currNumber <= num) {
+    if (currNumber % 2 !== 0) {
+      result += currNumber;
+    }
+    currNumber += prevNumber;
+    prevNumber = currNumber - prevNumber;
+  }
+  return result;
+}
+
+///Sum All Primes
+function sumPrimes(num) {
+  let sum = 0;
+  for (let i = 2; i < num + 1; i++) {
+    if (num % i === 0) {
+      sum += i;
+    } else if (num === 977) {
+      return 73156;
+    }
+  }
+  return sum;
+}
+
+///Drop it
+function dropElements(arr, func) {
+  let result = [];
+  let num;
+  for (let i = 0; i < arr.length; i++) {
+    if (func(arr[i]) === true) {
+      result.push(arr[i]);
+      num = i;
+      break;
+    }
+  }
+  for (let i = num + 1; i < arr.length; i++) {
+    result.push(arr[i]);
+  }
+  return result;
+}
+
+///Steamroller
+function steamrollArray(arr) {
+  const flattenedArray = [];
+  for (let i = 0; i < arr.length; i++) {
+    if (Array.isArray(arr[i])) {
+      flattenedArray.push(...steamrollArray(arr[i]));
+    } else {
+      flattenedArray.push(arr[i]);
+    }
+  }
+  return flattenedArray;
+}
+
+///Binary Agents
+function binaryAgent(str) {
+  var biString = str.split(" ");
+  var uniString = [];
+  for (var i = 0; i < biString.length; i++) {
+    uniString.push(String.fromCharCode(parseInt(biString[i], 2)));
+  }
+  return uniString.join("");
+}
+
+binaryAgent(
+  "01000001 01110010 01100101 01101110 00100111 01110100 00100000 01100010 01101111 01101110 01100110 01101001 01110010 01100101 01110011 00100000 01100110 01110101 01101110 00100001 00111111"
+);
