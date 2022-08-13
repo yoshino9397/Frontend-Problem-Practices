@@ -335,3 +335,231 @@ class CircularQueue {
   }
 }
 ///Create a Set Class
+///Perform a Union on Two Sets
+///Perform an Intersection on Two Sets of Data
+class Set {
+  constructor() {
+    this.dictionary = {};
+    this.length = 0;
+  }
+  has(element) {
+    return this.dictionary[element] !== undefined;
+  }
+  values() {
+    return Object.keys(this.dictionary);
+  }
+  add(element) {
+    if (!this.has(element)) {
+      this.dictionary[element] = true;
+      this.length++;
+      return true;
+    }
+    return false;
+  }
+  remove(element) {
+    if (this.has(element)) {
+      delete this.dictionary[element];
+      this.length--;
+      return true;
+    }
+    return false;
+  }
+  size() {
+    return this.length;
+  }
+  union(set) {
+    const newSet = new Set();
+    this.values().forEach((value) => {
+      newSet.add(value);
+    });
+    set.values().forEach((value) => {
+      newSet.add(value);
+    });
+    return newSet;
+  }
+  intersection(set) {
+    const newSet = new Set();
+    this.values().forEach((value) => {
+      if (set.values().includes(value)) {
+        newSet.add(value);
+      }
+    });
+    return newSet;
+  }
+}
+
+///Perform a Difference on Two Sets of Data
+// class Set {
+//   constructor() {
+//     this.dictionary = {};
+//     this.length = 0;
+//   }
+//   has(element) {
+//     return this.dictionary[element] !== undefined;
+//   }
+//   values() {
+//     return Object.keys(this.dictionary);
+//   }
+//   add(element) {
+//     if (!this.has(element)) {
+//       this.dictionary[element] = true;
+//       this.length++;
+//       return true;
+//     }
+//     return false;
+//   }
+//   remove(element) {
+//     if (this.has(element)) {
+//       delete this.dictionary[element];
+//       this.length--;
+//       return true;
+//     }
+//     return false;
+//   }
+//   size() {
+//     return this.length;
+//   }
+//   union(set) {
+//     const newSet = new Set();
+//     this.values().forEach((value) => {
+//       newSet.add(value);
+//     });
+//     set.values().forEach((value) => {
+//       newSet.add(value);
+//     });
+//     return newSet;
+//   }
+//   intersection(set) {
+//     const newSet = new Set();
+//     let largeSet;
+//     let smallSet;
+
+//     if (this.dictionary.length > set.length) {
+//       largeSet = this;
+//       smallSet = set;
+//     } else {
+//       largeSet = set;
+//       smallSet = this;
+//     }
+//     smallSet.values().forEach((value) => {
+//       if (largeSet.dictionary[value]) {
+//         newSet.add(value);
+//       }
+//     });
+//     return newSet;
+//   }
+//   difference(set) {
+//     const newSet = new Set();
+//     this.values().forEach((value) => {
+//       if (!set.values().includes(value)) {
+//         newSet.add(value);
+//       }
+//     });
+//     return newSet;
+//   }
+// }
+
+///Perform a Subset Check on Two Sets of Data
+// class Set {
+//   constructor() {
+//     this.dictionary = {};
+//     this.length = 0;
+//   }
+//   has(element) {
+//     return this.dictionary[element] !== undefined;
+//   }
+//   values() {
+//     return Object.keys(this.dictionary);
+//   }
+//   add(element) {
+//     if (!this.has(element)) {
+//       this.dictionary[element] = true;
+//       this.length++;
+//       return true;
+//     }
+//     return false;
+//   }
+//   remove(element) {
+//     if (this.has(element)) {
+//       delete this.dictionary[element];
+//       this.length--;
+//       return true;
+//     }
+//     return false;
+//   }
+//   size() {
+//     return this.length;
+//   }
+//   union(set) {
+//     const newSet = new Set();
+//     this.values().forEach((value) => {
+//       newSet.add(value);
+//     });
+//     set.values().forEach((value) => {
+//       newSet.add(value);
+//     });
+//     return newSet;
+//   }
+//   intersection(set) {
+//     const newSet = new Set();
+//     let largeSet;
+//     let smallSet;
+
+//     if (this.dictionary.length > set.length) {
+//       largeSet = this;
+//       smallSet = set;
+//     } else {
+//       largeSet = set;
+//       smallSet = this;
+//     }
+//     smallSet.values().forEach((value) => {
+//       if (largeSet.dictionary[value]) {
+//         newSet.add(value);
+//       }
+//     });
+//     return newSet;
+//   }
+//   difference(set) {
+//     const newSet = new Set();
+//     this.values().forEach((value) => {
+//       if (!set.dictionary[value]) {
+//         newSet.add(value);
+//       }
+//     });
+//     return newSet;
+//   }
+//   isSubsetOf(set) {
+//     return this.values().every((value) => set.values().includes(value));
+//   }
+// }
+
+///Create and Add to Sets in ES6
+function checkSet() {
+  var set = new Set([1, 2, 3, 3, 2, 1, 2, 3, 1]);
+  set.add("Taco");
+  set.add("Cat");
+  set.add("Awesome");
+  // console.log(Array.from(set));
+  return set;
+}
+checkSet();
+
+///Remove items from a set in ES6
+function checkSet() {
+  var set = new Set([1, 2, 3, 4, 5]);
+  set.delete(2);
+  set.delete(5);
+  return set;
+}
+
+///Use .has and .size on an ES6 Set
+function checkSet(arrToBeSet, checkValue) {
+  const newSet = new Set(arrToBeSet);
+  return [newSet.has(checkValue), newSet.size];
+}
+
+///Use Spread and Notes for ES5 Set() Integration
+function checkSet(set) {
+  var setToArr = [...set];
+  return setToArr;
+}
