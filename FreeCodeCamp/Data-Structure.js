@@ -532,3 +532,96 @@ function LinkedList() {
     return deletedNode.element;
   };
 }
+
+///Add Elements at a Specific Index in a Linked List
+function LinkedList() {
+  var length = 0;
+  var head = null;
+
+  var Node = function (element) {
+    this.element = element;
+    this.next = null;
+  };
+  this.head = function () {
+    return head;
+  };
+  this.size = function () {
+    return length;
+  };
+  this.add = function (element) {
+    const node = new Node(element);
+    if (head) {
+      let current = head;
+      while (current.next !== null) {
+        current = current.next;
+      }
+      current.next = node;
+    } else {
+      head = node;
+    }
+    length++;
+  };
+  this.addAt = function (index, element) {
+    if (index > length || index < 0) {
+      return false;
+    }
+    var newNode = new Node(element);
+    var currentNode = head;
+    if (index === 0) {
+      head = newNode;
+    } else {
+      var previousNode = null;
+      var i = 0;
+      while (currentNode && i < index) {
+        previousNode = currentNode;
+        currentNode = currentNode.next;
+        i++;
+      }
+      previousNode.next = newNode;
+    }
+    newNode.next = currentNode;
+    length++;
+  };
+}
+
+///Create a Doubly Linked List
+var Node = function (data, prev) {
+  this.data = data;
+  this.prev = prev;
+  this.next = null;
+};
+var DoublyLinkedList = function () {
+  this.head = null;
+  this.tail = null;
+};
+this.add = (data) => {
+  let node = new Node(data, this.tail);
+  if (!this.head) {
+    this.head = node;
+    this.tail = node;
+  } else {
+    let tempNode = this.tail;
+    tempNode.next = node;
+    this.tail = node;
+  }
+};
+this.remove = (key) => {
+  if (this.head === null) return null;
+  let tempNode = this.head;
+  while (tempNode !== this.tail) {
+    if (tempNode.data === data) {
+      if (tempNode === this.head) {
+        this.head = tempNode.next;
+        tempNode.next.prev = null;
+      } else {
+        let prevNode = tempNode.prev;
+        prevNode.next = tempNode.next;
+      }
+    }
+    tempNode = tempNode.next;
+  }
+  if (tempNode.data === data) {
+    this.tail = tempNode.prev;
+    tempNode.prev.next = null;
+  }
+};
