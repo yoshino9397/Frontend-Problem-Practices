@@ -383,3 +383,152 @@ var Map = function () {
 };
 
 ///Create an ES6 JavaScript Map
+const myMap = new Map();
+myMap.set("freeCodeCamp", "Awesome!");
+
+///Create a Hash Table
+var called = 0;
+var hash = (string) => {
+  called++;
+  var hashed = 0;
+  for (var i = 0; i < string.length; i++) {
+    hashed += string.charCodeAt(i);
+  }
+  return hashed;
+};
+var HashTable = function () {
+  this.collection = {};
+
+  this.add = (key, value) => {
+    const hashedKey = hash(key);
+    this.collection[hashedKey] = this.collection[hashedKey] || {};
+    this.collection[hashedKey][key] = value;
+  };
+  this.remove = (key) => {
+    const hashedKey = hash(key);
+    delete this.collection[hashedKey][key];
+    if (Object.keys(this.collection[hashedKey]).length == 0)
+      delete this.collection[hashedKey];
+  };
+  this.lookup = (key, value) => {
+    const hashedKey = hash(key);
+    return this.collection[hashedKey][key];
+  };
+};
+
+///Work with Nodes in a Linked List
+var Node = function (element) {
+  this.element = element;
+  this.next = null;
+};
+var Kitten = new Node("Kitten");
+var Puppy = new Node("Puppy");
+
+var Cat = new Node("Cat");
+var Dog = new Node("Dog");
+Kitten.next = Puppy;
+Puppy.next = Cat;
+Cat.next = Dog;
+
+///Create a Linked List Class
+///Remove Elements from a Linked List
+///Remove Elements from a Linked List by Index
+function LinkedList() {
+  var length = 0;
+  var head = null;
+
+  var Node = function (element) {
+    this.element = element;
+    this.next = null;
+  };
+  this.head = function () {
+    return head;
+  };
+  this.size = function () {
+    return length;
+  };
+  this.add = function (element) {
+    const node = new Node(element);
+    if (head) {
+      let current = head;
+      while (current.next !== null) {
+        current = current.next;
+      }
+      current.next = node;
+    } else {
+      head = node;
+    }
+    length++;
+  };
+
+  this.remove = function (element) {
+    if (head.element === element) {
+      head = head.next;
+      return length--;
+    }
+    let previous = head;
+    while (previous) {
+      let current = previous.next;
+      if (current) {
+        if (current.element === element) {
+          previous.next = current.next;
+          return length--;
+        }
+      }
+      previous = current;
+    }
+  };
+  this.isEmpty = function () {
+    return this.size() > 0 ? false : true;
+  };
+  this.indexOf = function (el) {
+    let currentNode = head,
+      index = -1,
+      indexFound = false;
+
+    while (!indexFound && currentNode) {
+      index++;
+      if (currentNode.element === el) {
+        indexFound = true;
+      }
+      currentNode = currentNode.next;
+    }
+    return indexFound ? index : -1;
+  };
+  this.elementAt = function (i) {
+    let currentNode = head,
+      currentElement,
+      index = -1,
+      indexReached = false;
+
+    while (!indexReached && currentNode) {
+      index++;
+      currentElement = currentNode.element;
+      if (index === i) {
+        indexReached = true;
+      }
+      currentNode = currentNode.next;
+    }
+    return indexReached ? currentElement : undefined;
+  };
+  this.removeAt = function (index) {
+    if (index < 0 || index >= length) {
+      return null;
+    }
+    let deletedNode = head;
+    if (index == 0) {
+      head = null;
+    } else {
+      let currentNode = head;
+      let currentIndex = 0;
+      while (currentIndex < index - 1) {
+        currentNode = currentNode.next;
+        currentIndex++;
+      }
+      deletedNode = currentNode.next;
+      currentNode.next = deletedNode.next;
+    }
+    length--;
+    return deletedNode.element;
+  };
+}
