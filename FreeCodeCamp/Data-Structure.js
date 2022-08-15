@@ -593,35 +593,163 @@ var Node = function (data, prev) {
 var DoublyLinkedList = function () {
   this.head = null;
   this.tail = null;
-};
-this.add = (data) => {
-  let node = new Node(data, this.tail);
-  if (!this.head) {
-    this.head = node;
-    this.tail = node;
-  } else {
-    let tempNode = this.tail;
-    tempNode.next = node;
-    this.tail = node;
-  }
-};
-this.remove = (key) => {
-  if (this.head === null) return null;
-  let tempNode = this.head;
-  while (tempNode !== this.tail) {
+
+  this.add = function (data) {
+    let node = new Node(data, this.tail);
+    if (!this.head) {
+      this.head = node;
+      this.tail = node;
+    } else {
+      let tempNode = this.tail;
+      tempNode.next = node;
+      this.tail = node;
+    }
+  };
+
+  this.remove = function (data) {
+    if (this.head === null) return null;
+    let tempNode = this.head;
+    while (tempNode !== this.tail) {
+      if (tempNode.data === data) {
+        if (tempNode === this.head) {
+          this.head = tempNode.next;
+          tempNode.next.prev = null;
+        } else {
+          let prevNode = tempNode.prev;
+          prevNode.next = tempNode.next;
+        }
+      }
+      tempNode = tempNode.next;
+    }
     if (tempNode.data === data) {
-      if (tempNode === this.head) {
-        this.head = tempNode.next;
-        tempNode.next.prev = null;
+      this.tail = tempNode.prev;
+      tempNode.prev.next = null;
+    }
+  };
+};
+
+///Reverse a Doubly Linked List
+var Node = function (data, prev) {
+  this.data = data;
+  this.prev = prev;
+  this.next = null;
+};
+var DoublyLinkedList = function () {
+  this.head = null;
+  this.tail = null;
+
+  this.add = function (element) {
+    let node = new Node(element, this.tail);
+    let currentNode = this.head;
+    let previousNode;
+
+    if (this.head === null) {
+      this.head = node;
+      this.tail = node;
+    } else {
+      while (currentNode.next) {
+        previousNode = currentNode;
+        currentNode = currentNode.next;
+      }
+      node.prev = currentNode;
+      currentNode.next = node;
+      this.tail = node;
+    }
+  };
+  this.reverse = function () {
+    let temp = null;
+    let currentNode = this.head;
+
+    if (this.head === null) {
+      return null;
+    }
+
+    this.tail = currentNode;
+
+    while (currentNode) {
+      temp = currentNode.prev;
+      currentNode.prev = currentNode.next;
+      currentNode.next = temp;
+      currentNode = currentNode.prev;
+    }
+
+    if (temp != null) {
+      this.head = temp.prev;
+    }
+  };
+};
+
+////Add a New Element to a Binary Search Tree
+///Find the Minimum and Maximum Value in a Binary Search Tree
+///Check if an Element is Present in a Binary Search Tree
+///Check if Tree is Binary Search Tree
+///Find the Minimum and Maximum Height of a Binary Search Tree
+var displayTree = (tree) => console.log(JSON.stringify(tree, null, 2));
+function Node(value) {
+  this.value = value;
+  this.left = null;
+  this.right = null;
+}
+function BinarySearchTree() {
+  this.root = null;
+  this.add = function (value) {
+    const newNode = new Node(value);
+    if (!this.root) {
+      this.root = newNode;
+      return undefined;
+    }
+    let currentNode = this.root;
+    while (currentNode) {
+      if (currentNode.value === newNode.value) {
+        return null;
+      }
+      const direction = currentNode.value > newNode.value ? "left" : "right";
+      if (!currentNode[direction]) {
+        currentNode[direction] = newNode;
+        return undefined;
+      }
+      currentNode = currentNode[direction];
+    }
+  };
+  this.findMin = function (value) {
+    if (!this.root) return null;
+    let curr = this.root;
+    while (curr.left) {
+      curr = curr.left;
+    }
+    return curr.value;
+  };
+  this.findMax = function (value) {
+    if (!this.root) return null;
+    let curr = this.root;
+    while (curr.right) {
+      curr = curr.right;
+    }
+    return curr.value;
+  };
+  this.isPresent = function (value) {
+    if (!this.root) return false;
+
+    let curr = this.root;
+    while (curr && curr.value !== value) {
+      if (curr.value > value) {
+        curr = curr.left;
       } else {
-        let prevNode = tempNode.prev;
-        prevNode.next = tempNode.next;
+        curr = curr.right;
       }
     }
-    tempNode = tempNode.next;
+    return !curr;
+  };
+  function isBinarySearchTree(tree) {
+    function isBinarySubTree(node) {
+      return (
+        !node ||
+        ((!node.left || node.left.value < node.value) &&
+          (!node.right || node.right.value >= node.value) &&
+          isBinarySubTree(node.left) &&
+          isBinarySubTree(node.right))
+      );
+    }
+    return isBinarySubTree(tree.root);
   }
-  if (tempNode.data === data) {
-    this.tail = tempNode.prev;
-    tempNode.prev.next = null;
-  }
-};
+}
