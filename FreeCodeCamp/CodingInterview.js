@@ -1,6 +1,7 @@
 ///Find the Symmetric Difference
 function sym(args) {
   var args = [...arguments];
+  console.log(args);
   function symDiff(arrayOne, arrayTwo) {
     var result = [];
     arrayOne.forEach((item) => {
