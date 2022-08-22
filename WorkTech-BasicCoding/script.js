@@ -151,3 +151,75 @@ let solve16 = (...input) => {
   );
 };
 solve16("Ram", 1996);
+
+/// 1 Character Line
+let solve17 = (input) => {
+  let word = input.split("");
+  for (let i = 0; i < word.length; i++) {
+    console.log(word[i]);
+  }
+};
+solve17("WORKATTECH");
+
+///Reverse Order
+let solve18 = (...input) => {
+  let array = [...input];
+  console.log(array.reverse());
+};
+solve18(34, 12, 56, 2, 1);
+
+/// 2 Character Line
+let solve19 = (input) => {
+  let words = input.split("");
+  for (let i = 0; i < words.length; i++) {
+    let word = words.splice(i, 2).join("");
+    i--;
+    console.log(word);
+  }
+};
+solve19("WORKATTECH");
+
+///Weather
+let solve20 = (...input) => {
+  let array = [...input];
+  for (let i = 0; i < array.length; i++) {
+    if (array[i][0] >= 30 && array[i][1] >= 90) {
+      console.log("Hot and Humid");
+    } else if (array[i][0] >= 30 && array[i][1] < 90) {
+      console.log("Hot");
+    } else if (array[i][0] < 30 && array[i][1] >= 90) {
+      console.log("Cool and Humid");
+    } else {
+      console.log("Cool");
+    }
+  }
+};
+solve20([34, 98], [23, 49]);
+
+///Palindrome
+let solve21 = (input) => {
+  let reverse = input.split("").reverse().join("");
+  if (input == reverse) {
+    return console.log("TRUE");
+  }
+  return console.log("FALSE");
+};
+solve21("refer");
+
+///Multiplication Table
+let solve22 = (input) => {
+  for (let i = 1; i < 11; i++) {
+    console.log(input * i);
+  }
+};
+solve22(6);
+
+//Vowels
+let solve23 = (...input) => {
+  let arr = [...input];
+  for (let i = 0; i < arr.length; i++) {
+    let word = arr[i].match(/[aiueo]/gi);
+    console.log(word.length);
+  }
+};
+solve23("Neha", "Rajan", "Aamir", "Bonnie", "Ram");
