@@ -223,3 +223,153 @@ let solve23 = (...input) => {
   }
 };
 solve23("Neha", "Rajan", "Aamir", "Bonnie", "Ram");
+
+//Pastries
+let solve24 = (...input) => {
+  let arr = [...input];
+  let desert = arr[0];
+  let sum = 0;
+  for (let i = 1; i < arr.length; i++) {
+    desert -= arr[i];
+    sum += arr[i];
+    if (desert > 0) {
+      console.log("Enjoy your dessert!");
+    } else {
+      console.log("Sorry, we are all out!");
+    }
+  }
+};
+solve24(15, 3, 2, 7, 4, 2, 1);
+
+///High Fever
+let solve25 = (...input) => {
+  let arr = [...input];
+  let people = [];
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i][1] >= 98.6) {
+      people.push(arr[i][0]);
+    }
+  }
+  console.log(people);
+};
+solve25(["Peter", 98.9], ["Ron", 98.5], ["Cynthia", 99.0], ["Sherry", 100]);
+
+///Guess
+let solve26 = (...input) => {
+  let arr = [...input];
+  for (let i = 1; i < arr.length; i++) {
+    if (arr[0] === arr[i]) {
+      arr.splice(i + 1, arr.length - i);
+    }
+  }
+  let people = [];
+  for (let i = 1; i < arr.length; i++) {
+    if (arr[0] === arr[i]) {
+      people.push("Correct Guess");
+    } else {
+      people.push("Incorrect Guess");
+    }
+  }
+  console.log(people);
+};
+solve26(14, 3, 23, 19, 14, 12);
+
+///Square The Number
+let solve27 = (...input) => {
+  let arr = [...input];
+  for (let i = 0; i < arr.length; i++) {
+    console.log(Math.pow(arr[i], 2));
+  }
+};
+solve27(3, 25, 13);
+
+///Words in Sentence
+let solve28 = (input) => {
+  let words = input.split(" ");
+  console.log(words.length);
+};
+solve28("The quick brown fox jumped over the lazy dog.");
+
+///Not Divisible
+let solve29 = (input) => {
+  let arr = [];
+  for (let i = 1; i < input + 1; i++) {
+    if (i % 3 === 0) {
+      continue;
+    }
+    arr.push(i);
+  }
+};
+solve29(13);
+
+///Percentage
+let solve30 = (...input) => {
+  let arr = [...input];
+  let full = arr.length * 80;
+  let sum = 0;
+  for (let i = 0; i < arr.length; i++) {
+    sum += arr[i];
+  }
+  console.log(`${(sum / full) * 100}%`);
+};
+solve30(77, 76, 68, 72, 79);
+
+///Max in Matrix
+let solve31 = (...input) => {
+  let arr = [...input].flat();
+  arr.sort((a, b) => a - b);
+  console.log(arr[arr.length - 1]);
+};
+solve31([32, 45, 12], [33, 11, 22]);
+
+///Adjacent Zeros
+let solve32 = (input) => {
+  if (parseInt(input, 2)) {
+    let num = input.toString().split("");
+    for (let i = 0; i < num.length; i++) {
+      if (num[i] === "0" && num[i + 1] === "0") {
+        return console.log("Yes");
+      } else {
+      }
+    }
+    return console.log("No");
+  }
+  return console.log("No");
+};
+solve32(1010101001);
+
+///Digit Sum
+let solve33 = (input) => {
+  let num = input.toString().split("");
+  let sum = 0;
+  for (let i = 0; i < num.length; i++) {
+    sum += Number(num[i]);
+  }
+  console.log(sum);
+};
+solve33(13246);
+
+///Square Sum
+let solve34 = (input) => {
+  let num = input.toString().split("");
+  let sum = 0;
+  for (let i = 0; i < num.length; i++) {
+    sum += Math.pow(Number(num[i]), 2);
+  }
+  console.log(sum);
+};
+solve34(13246);
+
+///Armstrong Number
+let solve35 = (input) => {
+  let num = input.toString().split("");
+  let sum = 0;
+  for (let i = 0; i < num.length; i++) {
+    sum += Number(num[i]);
+  }
+  if (Math.pow(sum, 1 / 2)) {
+    return console.log("Yes");
+  }
+  return console.log("No");
+};
+solve35(153);
