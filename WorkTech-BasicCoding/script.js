@@ -436,21 +436,82 @@ let solve39 = (input) => {
 solve39(135);
 
 /// Gross Salary
-let solve40 = (input) => {
-  let nums = input.toString().split("");
-  let arr = [];
-  for (let i = 0; i < nums.length; i++) {
-    arr.push(Number(nums[i]));
+let solve40 = (...input) => {
+  let arr = [...input];
+  let base = arr[3];
+  let per = 0;
+  for (let i = 0; i < arr.length - 1; i++) {
+    per += arr[i];
   }
-  let sum = 0;
-  let mul = 1;
-  for (let i = 0; i < arr.length; i++) {
-    sum += arr[i];
-    mul *= arr[i];
-  }
-  if (sum * mul === input) {
-    return console.log("Yes");
-  }
-  return console.log("No");
+  let sum = base + (base * per) / 100;
+  console.log(sum);
 };
-solve40(135);
+solve40(12, 8, 2, 12000);
+
+/// Net Salary
+let solve41 = (input) => {
+  let income = input;
+  let result;
+  let tax = 0;
+  if (input - 1000000 >= 1000000) {
+    tax += 200000 * 0.05 + 500000 * 0.2 + income - 1000000 * 0.3;
+  } else if (input - 500000 >= 500000) {
+    tax += 200000 * 0.05 + 500000 * 0.2;
+  } else if (input - 300000 >= 200000) {
+    tax += 200000 * 0.05;
+  } else if (500000 > input) {
+    tax === 0;
+  }
+  result = income - tax;
+  console.log(result);
+};
+solve41(750000);
+
+///To Upper Case
+let solve42 = (input) => {
+  console.log(input.toUpperCase());
+};
+solve42("welcome");
+
+///Toggle Case
+let solve43 = (input) => {
+  let arr = [];
+  let word = input.split("");
+  for (let i = 0; i < word.length; i++) {
+    word[i] === word[i].toUpperCase()
+      ? arr.push(word[i].toLowerCase())
+      : arr.push(word[i].toUpperCase());
+  }
+  console.log(arr.join(""));
+};
+solve43("wElcomE");
+
+///Swap Adjacent Elements
+let solve44 = (input) => {
+  let arr = [];
+  for (let i = 0; i < input.length; i = i + 2) {
+    arr.push(input[i + 1]);
+    arr.push(input[i]);
+  }
+  console.log(arr);
+};
+solve44([1, 2, 3, 4, 5, 6, 7, 8]);
+
+///Reverse Array
+let solve45 = (input) => {
+  console.log(input.reverse());
+};
+solve45([1, 5, 12, 6, -2]);
+
+///Is Sorted?
+let solve46 = (len, input) => {
+  if (input.length === len) {
+    for (let i = 0; i < input.length; i++) {
+      if (input[i] > input[i + 1]) {
+        return console.log("No");
+      }
+      return console.log("Yes");
+    }
+  }
+};
+solve46(4, [12, 14, 35, 55]);
