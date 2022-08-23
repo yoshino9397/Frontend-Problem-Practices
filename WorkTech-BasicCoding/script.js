@@ -373,3 +373,84 @@ let solve35 = (input) => {
   return console.log("No");
 };
 solve35(153);
+
+///Fibonacci Series
+let solve36 = (input) => {
+  let arr = [0, 1];
+  for (let i = 0; i < input - 2; i++) {
+    let first = arr[i];
+    let second = arr[i + 1];
+    let num = first + second;
+    arr.push(num);
+  }
+  console.log(arr);
+};
+solve36(8);
+
+///N Factorial
+let solve37 = (input) => {
+  let num = 1;
+  for (let i = 1; i < input + 1; i++) {
+    num *= i;
+  }
+  console.log(num);
+};
+solve37(8);
+
+/// Narcissistic Number
+let solve38 = (input) => {
+  let nums = input.toString().split("");
+  let arr = [];
+  for (let i = 0; i < nums.length; i++) {
+    arr.push(Number(nums[i]));
+  }
+  let sum = 0;
+  for (let i = 0; i < arr.length; i++) {
+    sum += Math.pow(arr[i], arr.length);
+  }
+  if (sum === input) {
+    return console.log("Yes");
+  }
+  return console.log("No");
+};
+solve38(153);
+
+///Sum-Product Number
+let solve39 = (input) => {
+  let nums = input.toString().split("");
+  let arr = [];
+  for (let i = 0; i < nums.length; i++) {
+    arr.push(Number(nums[i]));
+  }
+  let sum = 0;
+  let mul = 1;
+  for (let i = 0; i < arr.length; i++) {
+    sum += arr[i];
+    mul *= arr[i];
+  }
+  if (sum * mul === input) {
+    return console.log("Yes");
+  }
+  return console.log("No");
+};
+solve39(135);
+
+/// Gross Salary
+let solve40 = (input) => {
+  let nums = input.toString().split("");
+  let arr = [];
+  for (let i = 0; i < nums.length; i++) {
+    arr.push(Number(nums[i]));
+  }
+  let sum = 0;
+  let mul = 1;
+  for (let i = 0; i < arr.length; i++) {
+    sum += arr[i];
+    mul *= arr[i];
+  }
+  if (sum * mul === input) {
+    return console.log("Yes");
+  }
+  return console.log("No");
+};
+solve40(135);
