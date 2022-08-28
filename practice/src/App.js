@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./style.css";
 const users = [
   { name: "John Doe", id: 1 },
@@ -25,6 +25,7 @@ function Parent({ children }) {
     </div>
   );
 }
+const url = "https://jsonplaceholder.typicode.com/users/1";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -32,9 +33,23 @@ function App() {
   const [word, setWord] = useState("");
   const [value, setValue] = useState("");
   const [message, setMessage] = useState("I need to be updated from my child");
-  const [number1, setNumber1] = useState();
-  const [number2, setNumber2] = useState();
+  const [number1, setNumber1] = useState(0);
+  const [number2, setNumber2] = useState(0);
   const [total, setTotal] = useState(0);
+  const [userData, setUserData] = useState({});
+  
+  const fetch = async () => {
+    const resp = await fetch(url);
+    const respData = await resp.json();
+    setUserData(respData);
+  };
+  useEffect(() => {
+    fetch();
+  }, []);
+
+  const calculate = () => {
+    setTotal(number1 + number2);
+  };
 
   return (
     <div className="App">
@@ -88,11 +103,40 @@ function App() {
       </div>
       <div className="sum">
         <h2>Adding Two Numbers</h2>
-        <input placeholder="First Number" type="number" />
-        <input placeholder="Second Number" type="number" />
+        <input
+          placeholder="First Number"
+          type="number"
+          value={number1}
+          onChange={(e) => setNumber1(+e.target.value)}
+        />
+        <input
+          placeholder="Second Number"
+          type="number"
+          value={number2}
+          onChange={(e) => setNumber2(+e.target.value)}
+        />
 
-        <button>Add Two Numbers</button>
-        <p>Total:</p>
+        <button onClick={calculate}>Add Two Numbers</button>
+        <p>Total:{total || ""}</p>
+      </div>
+
+      <div className="fetch">
+        <h2>User Data</h2>
+        <p>
+          <strong>Name: </strong> {userData.name}
+        </p>
+        <p>
+          <strong>Website: </strong>
+          {userData.website}
+        </p>
+        <p>
+          <strong>Email: </strong>
+          {userData.email}
+        </p>
+        <p>
+          <strong>Phone: </strong>
+          {userData.phone}
+        </p>
       </div>
     </div>
   );
